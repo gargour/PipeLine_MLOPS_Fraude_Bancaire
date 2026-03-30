@@ -1,0 +1,7 @@
+# Fichiers volumineux à ignorer
+/data/*.csv
+/model/*.pkl
+/mlruns/
+__pycache__/
+*.pyc
+.env
