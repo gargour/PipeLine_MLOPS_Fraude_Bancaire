@@ -20,6 +20,6 @@ python src/predict.py
 
 1. `python src/data_analysis.py` → explorer les données  
 2. `python src/train.py` → entraîner les modèles + GridSearch + MLflow  
-3. `python src/evaluation.py` → générer le rapport de drift  
+3. `python src/evaluate.py` → générer le rapport de drift  
 4. `python src/predict.py` → prédictions CSV  
 5. `mlflow ui` → visualiser les runs  
