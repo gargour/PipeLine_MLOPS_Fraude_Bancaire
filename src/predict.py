@@ -89,3 +89,31 @@ plt.ylabel("Frequency (Log Scale)") # Matensech tbeddel el-label khater el-echel
 plt.legend()
 plt.grid(axis='y', alpha=0.3) # Zid grid bech t-sahal el-9raya
 plt.show()
+# =========================
+# 📊 GRAPH 3: BATCH FRAUD ANALYSIS (Koll 1000)
+# =========================
+batch_size = 1000
+# N-rattbu el-data mel-score el-3ali lel-score el-waati
+df_sorted = df.sort_values(by="FraudScore", ascending=False).reset_index(drop=True)
+
+# Na3mlou 9asmet el-batches
+df_sorted['Batch'] = df_sorted.index // batch_size
+
+# Na7sbu el-fraudes el-7a9iqyia (Class) fi koll batch
+batch_counts = df_sorted.groupby('Batch')['Class'].sum().reset_index()
+
+# N-sawrou el-10 batches el-wala (Top 10,000 transactions)
+plt.figure(figsize=(12,6))
+plt.bar(batch_counts['Batch'][:10], batch_counts['Class'][:10], color='salmon', edgecolor='black')
+
+plt.title(f"Nombre de Fraudes Réelles détectées par tranches de {batch_size} transactions")
+plt.xlabel(f"Numéro du Batch (Chaque batch = {batch_size} transactions)")
+plt.ylabel("Nombre de Fraudes Détectées")
+plt.xticks(range(10)) # N-warriw el-10 batches el-wala
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# N-zidu el-numruat fou9 el-barrat bech t-koun awda7
+for i, v in enumerate(batch_counts['Class'][:10]):
+    plt.text(i, v + 0.5, str(int(v)), ha='center', fontweight='bold')
+
+plt.show()
